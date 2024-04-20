@@ -1,0 +1,78 @@
+.authForm{
+    background-color: whitesmoke;
+}
+
+.imgArea{ 
+    background-image: linear-gradient(#003C43, #135D66, #77B0AA, #E3FEF7);
+    padding: 17% 5%;
+}
+
+.formArea{
+    padding: 10% 27% 15%;
+}
+
+.formArea div{
+    margin-top: 25%;
+}
+
+form input, a, button{
+    display: block;
+    margin-top: 5px;
+}
+
+form input{
+    border-radius: 20px;
+    padding: 8px;
+    border-width: 1px;
+}
+
+input :focus{
+    outline: none;
+    border-color: #fff;
+
+}
+
+@media screen and (max-width: 768px) {
+    .imgArea{
+        display: none;
+    }
+    .formArea{
+        padding: 10% 22% 15%;
+        width: 100%;
+    }
+    input{
+        width: 250px;
+    }
+    .authButton{
+        width: 150px;
+    }
+
+
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .formArea {
+        padding: 10% 22% 15%;
+    }
+
+    input {
+        width: 300px;
+    }
+
+    .authButton {
+        width: 180px;
+    }
+}
+
+@media screen and (min-width: 1025px){
+    .formArea{
+        padding: 10% 23% 15%;
+    }
+    input{
+        width: 300px;
+    }
+    .authButton{
+        width: 200px;
+    }
+}
+
