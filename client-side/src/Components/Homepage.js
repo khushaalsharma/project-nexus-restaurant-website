@@ -1,5 +1,5 @@
 import React from 'react';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.css';
 import AppNavbar from './AppNavbar.js';
 import AppFooter from './AppFooter.js';
 import restImg from "../Images/restaurant-interior.jpg";
@@ -63,24 +63,24 @@ const Homepage = () => {
               </div>
             </section>
             <section id='testimonials'>
-              <h2>Testimonials</h2>
-              <div id='restTestimonial' className='carousel slide' data-ride="carousel">
-                <div className='carousel-inner'>
-                  <div className='carousel-item active'>
-                    <h6>"As a food critic, I'm constantly on the lookout for culinary excellence, and Desi Tarka delivers just that. Each dish is a masterpiece, showcasing the chef's skill and artistry. The attention to detail is unparalleled, from the presentation to the harmonious flavors. It's evident that every element has been carefully considered. Without a doubt, Desi Tarka has earned its place among the city's culinary elite."</h6>
-                    <em>Rakesh Arora, Food Critic</em>
-                  </div>
-                  {returnTestimonial()}
+            <h2>Testimonials</h2>
+            <div id='restTestimonial' className='carousel slide' data-ride="carousel">
+              <div className='carousel-inner'>
+                <div className='carousel-item active'>
+                  <h6>"As a food critic, I'm constantly on the lookout for culinary excellence, and Desi Tarka delivers just that. Each dish is a masterpiece, showcasing the chef's skill and artistry. The attention to detail is unparalleled, from the presentation to the harmonious flavors. It's evident that every element has been carefully considered. Without a doubt, Desi Tarka has earned its place among the city's culinary elite."</h6>
+                  <em>Rakesh Arora, Food Critic</em>
                 </div>
-                <a className='carousel-control-prev' href='#restTestimonial' role='button' data-slide="prev">
-                  <span className='carousel-control-prev-icon' aria-hidden="true"></span>
-                  <span className='sr-only'>Previous</span>
-                </a>
-                <a className='carousel-control-next' href='#restTestimonial' role='button' data-slide="next">
-                  <span className='carousel-control-next-icon' aria-hidden="true"></span>
-                  <span className='sr-only'>Next</span>
-                </a>
+                {returnTestimonial()}
               </div>
+              <a className='carousel-control-prev' href='#restTestimonial' role='button' data-slide="prev">
+                <span className='carousel-control-prev-icon' aria-hidden="true"></span>
+                <span className='sr-only'>Previous</span>
+              </a>
+              <a className='carousel-control-next' href='#restTestimonial' role='button' data-slide="next">
+                <span className='carousel-control-next-icon' aria-hidden="true"></span>
+                <span className='sr-only'>Next</span>
+              </a>
+            </div>
           </section>
         </div>
         <AppFooter/>
