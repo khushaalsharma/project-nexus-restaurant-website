@@ -1,6 +1,7 @@
 import express from "express";
 import mysql from "mysql";
 import cors from "cors";
+import jwt from "jsonwebtoken";
 
 //controller functions
 import {genPassword, checkPassword, checkUser, addCustomer} from "./Controllers/authFuncs.js";
@@ -11,25 +12,25 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: false
 }));
-app.use("*", cors({
+app.use(cors({
     origin: "http://localhost:3000",
-    Credential: true
+    credentials: true
 }));
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Allow-Control-Origin", "http://localhost:3000");
-    res.setHeader("Access-Allow-Control-Methods", "POST GET");
-    res.setHeader("Access-Allow-Control-Headers", "Content-Type, Authorization");
-    res.setHeader("Access-Allow-Control-Credentials", true);
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Methods", "POST GET PUT DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.setHeader("Access-Control-Allow-Credentials", true);
     next();
 })
 
 //REST APIs
 app.post("/auth/login", async(req, res) => {
-    res.setHeader("Access-Allow-Control-Origin", "http://localhost:3000");
-    res.setHeader("Access-Allow-Control-Methods", "POST");
-    res.setHeader("Access-Allow-Control-Headers", "Content-Type");
-    res.setHeader("Access-Allow-Control-Credentials", true);
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Methods", "POST");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
     
     const {email, password} = req.body;
 
@@ -43,6 +44,10 @@ app.post("/auth/login", async(req, res) => {
         else{
             const actPassword = isUser[0].password;
             if(checkPassword(password, actPassword)){
+                const cookieValue = jwt.sign(isUser[0].cust_id, process.env.LOGIN_KEY);
+
+                res.cookie("loggedDTUser", cookieValue);
+                
                 res.status(200).json({
                     msg: "OK"
                 });
@@ -60,10 +65,10 @@ app.post("/auth/login", async(req, res) => {
 });
 
 app.post("/auth/register", async(req, res) => {
-    res.setHeader("Access-Allow-Control-Origin", "http://localhost:3000");
-    res.setHeader("Access-Allow-Control-Methods", "POST");
-    res.setHeader("Access-Allow-Control-Headers", "Content-Type, Authorization");
-    res.setHeader("Access-Allow-Control-Credentials", true);
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Methods", "POST");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
 
     const {name, email, password} = req.body;
     //console.log(req.body);
@@ -77,6 +82,9 @@ app.post("/auth/register", async(req, res) => {
             });
         }
         else{
+
+            const cookieValue = jwt.sign(newUser[0].cust_id, process.env.LOGIN_KEY);
+            res.cookie("loggedDTUser", cookieValue);
             res.status(200).json({
                 msg: "OK"
             });

@@ -127,3 +127,15 @@ footer{
 .carousel-item{
     padding: 5% 10%;
 }
+
+/* APP PAGE STYLES*/
+
+.home{
+    margin-top: 15%;
+    font-family: "Poppins", sans-serif;
+}
+
+.home h1{
+    font-family: "Dancing Script", cursive;
+    color: red;
+}
